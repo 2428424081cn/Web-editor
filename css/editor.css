@@ -1,0 +1,303 @@
+/* ============================================
+   Editor Styles - 编辑器样式
+   ============================================ */
+
+/* ---- 富文本编辑器 ---- */
+.rich-text-panel {
+  display: none;
+  height: 100%;
+}
+
+.rich-text-panel.active {
+  display: block;
+}
+
+.editor-content {
+  width: 100%;
+  height: 100%;
+  padding: 24px 40px;
+  overflow-y: auto;
+  outline: none;
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--editor-text);
+  background: var(--editor-bg);
+  caret-color: var(--editor-cursor);
+}
+
+.editor-content:empty::before {
+  content: '开始输入内容...';
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.editor-content h1 { font-size: 2em; font-weight: 700; margin: 0.6em 0 0.3em; }
+.editor-content h2 { font-size: 1.5em; font-weight: 600; margin: 0.5em 0 0.25em; }
+.editor-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.4em 0 0.2em; }
+.editor-content p { margin: 0.5em 0; }
+.editor-content ul, .editor-content ol { padding-left: 2em; margin: 0.5em 0; }
+.editor-content li { margin: 0.2em 0; }
+.editor-content a { color: var(--accent); text-decoration: underline; }
+.editor-content img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
+.editor-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin: 0.5em 0;
+  color: var(--text-secondary);
+}
+.editor-content pre {
+  background: var(--md-code-bg);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.editor-content code {
+  font-family: var(--font-mono);
+  background: var(--md-code-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.editor-content pre code {
+  background: none;
+  padding: 0;
+}
+.editor-content hr {
+  border: none;
+  border-top: 1px solid var(--border-primary);
+  margin: 1em 0;
+}
+.editor-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.5em 0;
+}
+.editor-content th, .editor-content td {
+  border: 1px solid var(--border-primary);
+  padding: 8px 12px;
+  text-align: left;
+}
+.editor-content th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+}
+
+/* ---- 代码编辑器 ---- */
+.code-panel {
+  display: none;
+  height: 100%;
+}
+
+.code-panel.active {
+  display: block;
+}
+
+.code-editor-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.line-numbers {
+  width: 50px;
+  min-width: 50px;
+  height: 100%;
+  padding: 12px 8px 12px 0;
+  text-align: right;
+  color: var(--editor-line-number);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  font-size: var(--font-size-sm);
+  line-height: inherit;
+  border-right: 1px solid var(--border-secondary);
+}
+
+.code-highlight-layer {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+  padding: 12px 12px;
+  overflow: auto;
+  pointer-events: none;
+  white-space: pre;
+  word-wrap: normal;
+  font-size: inherit;
+  line-height: inherit;
+  color: transparent;
+  tab-size: 2;
+}
+
+.code-textarea {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - 50px);
+  height: 100%;
+  padding: 12px 12px;
+  border: none;
+  background: transparent;
+  color: var(--editor-text);
+  caret-color: var(--editor-cursor);
+  resize: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: inherit;
+  line-height: inherit;
+  tab-size: 2;
+  white-space: pre;
+  word-wrap: normal;
+  overflow: auto;
+}
+
+.code-textarea.word-wrap {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 同步滚动 */
+.code-highlight-layer {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.code-highlight-layer::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Markdown 编辑器 ---- */
+.markdown-panel {
+  display: none;
+  height: 100%;
+}
+
+.markdown-panel.active {
+  display: block;
+}
+
+.markdown-split {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.markdown-editor-side {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-secondary);
+}
+
+.markdown-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  background: var(--editor-bg);
+  color: var(--editor-text);
+  caret-color: var(--editor-cursor);
+  resize: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.markdown-textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.markdown-preview-side {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--bg-primary);
+}
+
+.markdown-preview-content {
+  padding: 16px 24px;
+  max-width: 800px;
+  line-height: 1.7;
+}
+
+/* 分割线拖拽 */
+.split-divider {
+  width: 4px;
+  cursor: col-resize;
+  background: var(--border-secondary);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.split-divider:hover,
+.split-divider.dragging {
+  background: var(--accent);
+}
+
+/* ---- Markdown 预览样式 ---- */
+.markdown-preview-content h1 { font-size: 2em; font-weight: 700; margin: 0.8em 0 0.4em; color: var(--md-heading); border-bottom: 1px solid var(--border-secondary); padding-bottom: 0.3em; }
+.markdown-preview-content h2 { font-size: 1.5em; font-weight: 600; margin: 0.7em 0 0.3em; color: var(--md-heading); border-bottom: 1px solid var(--border-secondary); padding-bottom: 0.2em; }
+.markdown-preview-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.6em 0 0.2em; color: var(--md-heading); }
+.markdown-preview-content h4 { font-size: 1.1em; font-weight: 600; margin: 0.5em 0 0.2em; color: var(--md-heading); }
+.markdown-preview-content p { margin: 0.6em 0; }
+.markdown-preview-content a { color: var(--md-link); text-decoration: none; }
+.markdown-preview-content a:hover { text-decoration: underline; }
+.markdown-preview-content strong { font-weight: 700; }
+.markdown-preview-content em { font-style: italic; }
+.markdown-preview-content del { text-decoration: line-through; color: var(--text-secondary); }
+.markdown-preview-content ul, .markdown-preview-content ol { padding-left: 2em; margin: 0.6em 0; }
+.markdown-preview-content li { margin: 0.3em 0; }
+.markdown-preview-content li > ul, .markdown-preview-content li > ol { margin: 0.2em 0; }
+.markdown-preview-content code {
+  font-family: var(--font-mono);
+  background: var(--md-code-bg);
+  color: var(--md-code-text);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+.markdown-preview-content pre {
+  background: var(--md-code-bg);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  margin: 0.8em 0;
+}
+.markdown-preview-content pre code {
+  background: none;
+  color: var(--editor-text);
+  padding: 0;
+  font-size: 0.9em;
+}
+.markdown-preview-content blockquote {
+  border-left: 4px solid var(--md-blockquote-border);
+  padding: 8px 16px;
+  margin: 0.8em 0;
+  color: var(--text-secondary);
+  background: var(--accent-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.markdown-preview-content img { max-width: 100%; height: auto; border-radius: var(--radius-sm); margin: 0.5em 0; }
+.markdown-preview-content hr { border: none; border-top: 2px solid var(--md-hr); margin: 1.5em 0; }
+.markdown-preview-content table { border-collapse: collapse; width: 100%; margin: 0.8em 0; }
+.markdown-preview-content th, .markdown-preview-content td { border: 1px solid var(--md-table-border); padding: 8px 12px; text-align: left; }
+.markdown-preview-content th { background: var(--bg-secondary); font-weight: 600; }
+.markdown-preview-content tr:nth-child(even) { background: var(--bg-secondary); }
+.markdown-preview-content input[type="checkbox"] { margin-right: 6px; }

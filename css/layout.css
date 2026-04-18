@@ -1,0 +1,346 @@
+/* ============================================
+   Layout Styles - 布局样式
+   ============================================ */
+
+/* 整体布局 */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* 菜单栏 */
+.menu-bar {
+  display: flex;
+  align-items: center;
+  height: var(--menu-height);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+  padding: 0 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.menu-item {
+  position: relative;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: var(--bg-hover);
+}
+
+/* 下拉菜单 */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 4px 0;
+  z-index: 1000;
+  animation: slideDown 0.15s ease;
+}
+
+.menu-item.active .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 16px;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  transition: background var(--transition-fast);
+}
+
+.dropdown-menu button:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.dropdown-menu .shortcut {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-left: 32px;
+}
+
+.dropdown-menu button:hover .shortcut {
+  color: var(--accent);
+}
+
+.menu-divider {
+  height: 1px;
+  background: var(--border-secondary);
+  margin: 4px 0;
+}
+
+/* 工具栏 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  height: var(--toolbar-height);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+  padding: 0 8px;
+  gap: 2px;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-primary);
+  margin: 0 4px;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.tool-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.tool-btn.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tool-select {
+  height: 28px;
+  padding: 2px 8px;
+  font-size: var(--font-size-sm);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* 标签栏 */
+.tab-bar {
+  display: flex;
+  align-items: center;
+  height: var(--tab-height);
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-secondary);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.tab-list {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex: 1;
+}
+
+.tab-list::-webkit-scrollbar {
+  height: 0;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  min-width: 100px;
+  max-width: 200px;
+  height: 100%;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-right: 1px solid var(--border-secondary);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tab:hover {
+  background: var(--bg-hover);
+}
+
+.tab.active {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab.dirty .tab-title::after {
+  content: '●';
+  margin-left: 4px;
+  font-size: 10px;
+  color: var(--accent);
+}
+
+.tab-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  color: var(--text-tertiary);
+  opacity: 0;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.tab:hover .tab-close,
+.tab.active .tab-close {
+  opacity: 1;
+}
+
+.tab-close:hover {
+  background: var(--bg-active);
+  color: var(--text-primary);
+}
+
+.tab-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 100%;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.tab-new:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* 编辑器主区域 */
+.editor-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.editor-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 分屏布局 */
+.editor-container.split-horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container.split-vertical {
+  display: flex;
+  flex-direction: row;
+}
+
+.editor-container .editor-panel {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-container .editor-panel:not(:only-child) {
+  border: 1px solid var(--border-secondary);
+}
+
+/* 状态栏 */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--status-height);
+  background: var(--accent);
+  color: var(--text-inverse);
+  padding: 0 12px;
+  font-size: var(--font-size-xs);
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.status-left, .status-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-item {
+  cursor: default;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .menu-bar {
+    display: none;
+  }
+
+  .toolbar {
+    padding: 0 4px;
+    gap: 1px;
+  }
+
+  .tool-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tab {
+    min-width: 80px;
+    max-width: 120px;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toolbar-group:not(.mode-switcher):not(:last-child) {
+    display: none;
+  }
+}

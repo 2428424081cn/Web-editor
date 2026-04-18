@@ -1,0 +1,150 @@
+/* ============================================
+   CSS Variables - 主题色彩系统
+   ============================================ */
+
+:root,
+[data-theme="light"] {
+  /* 背景色 */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-tertiary: #EEEEEE;
+  --bg-hover: #E8E8E8;
+  --bg-active: #DADADA;
+  --bg-input: #FFFFFF;
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+
+  /* 文字色 */
+  --text-primary: #1C2833;
+  --text-secondary: #5D6D7E;
+  --text-tertiary: #95A5A6;
+  --text-inverse: #FFFFFF;
+
+  /* 边框色 */
+  --border-primary: #D5D8DC;
+  --border-secondary: #E5E8EB;
+  --border-focus: #2E86C1;
+
+  /* 强调色 */
+  --accent: #2E86C1;
+  --accent-hover: #1A5276;
+  --accent-light: #D6EAF8;
+  --accent-bg: rgba(46, 134, 193, 0.1);
+
+  /* 状态色 */
+  --success: #27AE60;
+  --warning: #F39C12;
+  --error: #E74C3C;
+  --info: #3498DB;
+
+  /* 编辑器专用 */
+  --editor-bg: #FFFFFF;
+  --editor-text: #1C2833;
+  --editor-line-number: #95A5A6;
+  --editor-line-number-active: #5D6D7E;
+  --editor-selection: rgba(46, 134, 193, 0.2);
+  --editor-cursor: #1C2833;
+
+  /* 语法高亮色 */
+  --hl-keyword: #0000FF;
+  --hl-string: #A31515;
+  --hl-comment: #008000;
+  --hl-number: #098658;
+  --hl-function: #795E26;
+  --hl-operator: #000000;
+  --hl-tag: #569CD6;
+  --hl-attribute: #9CDCFE;
+  --hl-property: #CE9178;
+  --hl-punctuation: #808080;
+
+  /* Markdown 预览 */
+  --md-heading: #1C2833;
+  --md-link: #2E86C1;
+  --md-code-bg: #F2F4F4;
+  --md-code-text: #E74C3C;
+  --md-blockquote-border: #2E86C1;
+  --md-table-border: #D5D8DC;
+  --md-hr: #D5D8DC;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+  /* 尺寸 */
+  --menu-height: 32px;
+  --toolbar-height: 40px;
+  --tab-height: 36px;
+  --status-height: 24px;
+  --sidebar-width: 0px;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* 过渡 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+
+  /* 字体 */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'Cascadia Code', 'Fira Code', 'Source Code Pro', 'Consolas', 'Microsoft YaHei', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1E1E1E;
+  --bg-secondary: #252526;
+  --bg-tertiary: #2D2D30;
+  --bg-hover: #37373D;
+  --bg-active: #4A4A4F;
+  --bg-input: #3C3C3C;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #D4D4D4;
+  --text-secondary: #9E9E9E;
+  --text-tertiary: #6E6E6E;
+  --text-inverse: #1E1E1E;
+
+  --border-primary: #3E3E42;
+  --border-secondary: #2D2D30;
+  --border-focus: #569CD6;
+
+  --accent: #569CD6;
+  --accent-hover: #4EC9B0;
+  --accent-light: #1E3A5F;
+  --accent-bg: rgba(86, 156, 214, 0.15);
+
+  --editor-bg: #1E1E1E;
+  --editor-text: #D4D4D4;
+  --editor-line-number: #6E6E6E;
+  --editor-line-number-active: #9E9E9E;
+  --editor-selection: rgba(86, 156, 214, 0.3);
+  --editor-cursor: #D4D4D4;
+
+  --hl-keyword: #569CD6;
+  --hl-string: #CE9178;
+  --hl-comment: #6A9955;
+  --hl-number: #B5CEA8;
+  --hl-function: #DCDCAA;
+  --hl-operator: #D4D4D4;
+  --hl-tag: #569CD6;
+  --hl-attribute: #9CDCFE;
+  --hl-property: #CE9178;
+  --hl-punctuation: #808080;
+
+  --md-heading: #D4D4D4;
+  --md-link: #569CD6;
+  --md-code-bg: #2D2D30;
+  --md-code-text: #CE9178;
+  --md-blockquote-border: #569CD6;
+  --md-table-border: #3E3E42;
+  --md-hr: #3E3E42;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}

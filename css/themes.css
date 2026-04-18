@@ -1,0 +1,50 @@
+/* ============================================
+   Themes - 主题切换动画
+   ============================================ */
+
+/* 主题切换过渡 */
+body,
+.menu-bar,
+.toolbar,
+.tab-bar,
+.status-bar,
+.editor-content,
+.code-textarea,
+.markdown-textarea,
+.dropdown-menu,
+.modal,
+.find-replace-bar {
+  transition: background-color var(--transition-normal),
+              color var(--transition-normal),
+              border-color var(--transition-normal);
+}
+
+/* 暗色模式下的特殊调整 */
+[data-theme="dark"] .editor-content img {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .code-textarea::selection,
+[data-theme="dark"] .markdown-textarea::selection,
+[data-theme="dark"] .editor-content::selection {
+  background: var(--editor-selection);
+}
+
+/* 打印样式 */
+@media print {
+  .menu-bar,
+  .toolbar,
+  .tab-bar,
+  .status-bar,
+  .find-replace-bar {
+    display: none !important;
+  }
+
+  .editor-area {
+    overflow: visible;
+  }
+
+  .editor-content {
+    padding: 0;
+  }
+}

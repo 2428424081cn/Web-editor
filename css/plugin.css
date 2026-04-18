@@ -1,0 +1,307 @@
+/* ============================================
+   Plugin System Styles - 插件系统样式
+   ============================================ */
+
+/* 侧边栏 */
+.plugin-sidebar {
+  width: 240px;
+  min-width: 200px;
+  max-width: 400px;
+  height: 100%;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-secondary);
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-section {
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--bg-tertiary);
+  user-select: none;
+  cursor: pointer;
+}
+
+.sidebar-header:hover {
+  background: var(--bg-hover);
+}
+
+.sidebar-body {
+  padding: 8px 12px;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+/* 插件工具栏按钮特殊样式 */
+.plugin-tools .tool-btn {
+  position: relative;
+}
+
+.plugin-tools .tool-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* 插件菜单项 */
+.plugin-menu-item {
+  transition: background var(--transition-fast);
+}
+
+/* 编辑器区域支持侧边栏 */
+#editorArea {
+  display: flex;
+}
+
+#editorArea.has-sidebar .editor-container {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 无侧边栏时恢复原始布局 */
+#editorArea:not(.has-sidebar) .editor-container {
+  width: 100%;
+}
+
+/* 插件管理面板 */
+.plugin-manager-panel {
+  padding: 12px;
+}
+
+.plugin-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.plugin-item:last-child {
+  border-bottom: none;
+}
+
+.plugin-info {
+  flex: 1;
+}
+
+.plugin-name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.plugin-version {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-left: 6px;
+}
+
+.plugin-status {
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.plugin-status.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.plugin-status.inactive {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+}
+
+.plugin-toggle {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--bg-active);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border: none;
+  padding: 0;
+}
+
+.plugin-toggle.on {
+  background: var(--accent);
+}
+
+.plugin-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.plugin-toggle.on::after {
+  transform: translateX(16px);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .plugin-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ============================================
+   Plugin Manager UI - 插件管理器界面样式
+   ============================================ */
+
+.pm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-secondary);
+  transition: background var(--transition-fast);
+}
+
+.pm-item:hover {
+  background: var(--bg-secondary);
+}
+
+.pm-item:last-child {
+  border-bottom: none;
+}
+
+.pm-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pm-item-name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pm-item-version {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.pm-item-source {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.pm-item-source.builtin {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.pm-item-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pm-item-author {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+.pm-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.pm-toggle {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--bg-active);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.pm-toggle.on {
+  background: var(--accent);
+}
+
+.pm-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.pm-toggle.on::after {
+  transform: translateX(16px);
+}
+
+.pm-uninstall {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  background: none;
+}
+
+.pm-uninstall:hover {
+  background: var(--error);
+  color: white;
+}
