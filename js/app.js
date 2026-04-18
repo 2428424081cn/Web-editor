@@ -15,6 +15,9 @@ class App {
       // 2. 初始化插件系统（必须在其他组件之前）
       window.pluginManager.init();
 
+      // 2.1 加载插件脚本（必须在 init 之后，WebEditor 可用时）
+      await this._loadPlugins();
+
       // 3. 初始化主题
       await window.themeService.init();
 
@@ -467,6 +470,26 @@ class App {
     container.classList.remove('split-horizontal', 'split-vertical');
     if (direction) {
       container.classList.add(`split-${direction}`);
+    }
+  }
+
+  /**
+   * 动态加载插件脚本
+   */
+  async _loadPlugins() {
+    const plugins = [
+      'plugins/word-count.js',
+      'plugins/timestamp.js',
+      'plugins/version-control.js'
+    ];
+    for (const src of plugins) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = () => { console.warn(`[App] 插件加载失败: ${src}`); resolve(); };
+        document.head.appendChild(s);
+      });
     }
   }
 
