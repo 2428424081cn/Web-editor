@@ -39,6 +39,7 @@ class App {
       // 10. 激活示例插件
       await window.pluginManager.activate('word-count');
       await window.pluginManager.activate('timestamp');
+      await window.pluginManager.activate('version-control');
 
       // 11. 恢复标签页或创建默认标签
       await this._restoreTabs();

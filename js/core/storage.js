@@ -5,7 +5,7 @@
 class StorageManager {
   constructor() {
     this.dbName = 'WebEditorDB';
-    this.dbVersion = 1;
+    this.dbVersion = 2;
     this.db = null;
   }
 
@@ -33,6 +33,13 @@ class StorageManager {
         // 文件句柄存储（File System Access API）
         if (!db.objectStoreNames.contains('fileHandles')) {
           db.createObjectStore('fileHandles', { keyPath: 'tabId' });
+        }
+
+        // 版本控制存储
+        if (!db.objectStoreNames.contains('versions')) {
+          const verStore = db.createObjectStore('versions', { keyPath: 'id' });
+          verStore.createIndex('tabId', 'tabId', { unique: false });
+          verStore.createIndex('timestamp', 'timestamp', { unique: false });
         }
       };
 
@@ -113,6 +120,37 @@ class StorageManager {
 
   async deleteFileHandle(tabId) {
     return this._transaction('fileHandles', 'readwrite', store => store.delete(tabId));
+  }
+
+  // ---- 版本操作 ----
+
+  async saveVersion(version) {
+    return this._transaction('versions', 'readwrite', store => store.put(version));
+  }
+
+  async getVersionsByTab(tabId) {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('versions', 'readonly');
+      const index = tx.objectStore('versions').index('tabId');
+      const request = index.getAll(tabId);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  }
+
+  async deleteVersion(id) {
+    return this._transaction('versions', 'readwrite', store => store.delete(id));
+  }
+
+  async deleteVersionsByTab(tabId) {
+    const versions = await this.getVersionsByTab(tabId);
+    const tx = this.db.transaction('versions', 'readwrite');
+    const store = tx.objectStore('versions');
+    versions.forEach(v => store.delete(v.id));
+    return new Promise((resolve, reject) => {
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
   }
 }
 
